@@ -1,0 +1,28 @@
+name: Latest blog posts
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update README from the blog RSS feed
+        run: |
+          python3 - <<'PY'
+          import re, urllib.request, xml.etree.ElementTree as ET
+          xml = urllib.request.urlopen("https://s-gaglione.github.io/feed.xml", timeout=30).read()
+          items = ET.fromstring(xml).findall("./channel/item")[:5]
+          lines = "\n".join(f"- [{i.findtext('title')}]({i.findtext('link')})" for i in items)
+          s = open("README.md", encoding="utf-8").read()
+          s = re.sub(r"(<!-- BLOG:START -->\n).*?(\n<!-- BLOG:END -->)", lambda m: m.group(1) + lines + m.group(2), s, flags=re.S)
+          open("README.md", "w", encoding="utf-8").write(s)
+          PY
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git diff --quiet || (git commit -am "Update latest posts" && git push)
