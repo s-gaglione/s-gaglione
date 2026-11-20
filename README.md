@@ -15,11 +15,11 @@ I write about what I try and what I learn along the way — small language model
 ### Latest writing
 
 <!-- BLOG:START -->
-- [Training a 500M model to follow documents made it refuse more often](https://s-gaglione.github.io/writing/small-faithful-model/)
-- [A Socratic machine](https://s-gaglione.github.io/writing/socratic-machine/)
 - [The end of the navbar](https://s-gaglione.github.io/writing/end-of-the-navbar/)
 - [Generative UI needs a design system, not a blank canvas](https://s-gaglione.github.io/writing/generative-ui/)
+- [One product, a thousand interfaces](https://s-gaglione.github.io/writing/interfaces-that-adapt/)
 - [Models are becoming a commodity. Everything around them is not.](https://s-gaglione.github.io/writing/models-are-a-commodity/)
+- [Training a 500M model to follow documents made it refuse more often](https://s-gaglione.github.io/writing/small-faithful-model/)
 <!-- BLOG:END -->
 
 → [All writing](https://s-gaglione.github.io/#writing)
